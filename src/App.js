@@ -52,17 +52,27 @@ const ListItem = styled("li")`
 
 const options = ["Mangoes", "Apples", "Oranges"];
 
+const optionsMap = {
+  "Apples": "https://media.istockphoto.com/id/1365099869/photo/six-apples.jpg?s=612x612&w=0&k=20&c=Kx9jNvEET5ERr7oHNFMxroTc54K1Ngk7R1BW9ICX2PU=",
+  "Mangoes": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaeJ2XXT7zlbG1wzZItoemV69-6SyPOWyNfTLum1MAzfdKx7Evx-o1KRLOuIY43NfuOBg&usqp=CAU",
+  "Oranges": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9yvFu2Kp5tq-J8wTHW48e3kS3m6e8YLxQm_q_-4hYINXGXvph9Kxym0Ww6pOjcAd3_II&usqp=CAU"
+};
+
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [imageSource, setImageSource] = useState(optionsMap["Mangoes"]);
 
   const toggling = () => setIsOpen(!isOpen);
 
   const onOptionClicked = value => () => {
+    console.log(`value = ${value}`);
     setSelectedOption(value);
-    setIsOpen(false);
-    console.log(selectedOption);
+    setIsOpen(false)
+    setImageSource(optionsMap[value])
   };
+
+  console.log(`rendering: selectedOption = ${selectedOption} isOpen = ${isOpen}`);
 
   return (
     <Main>
@@ -82,7 +92,11 @@ export default function App() {
             </DropDownList>
           </DropDownListContainer>
         )}
+        {!isOpen && (<img src={imageSource} alt="" >
+      </img>)}
       </DropDownContainer>
+      <div>
+      </div> 
     </Main>
   );
 }
