@@ -76,8 +76,9 @@ export default function App() {
 
   return (
     <Main>
-      <h1>Custom Select/dropdown</h1>
+      <h1>Fruits Dropdown</h1>
       <DropDownContainer>
+        <h3>Click to select another fruit</h3>
         <DropDownHeader onClick={toggling}>
           {selectedOption || "Mangoes"}
         </DropDownHeader>
